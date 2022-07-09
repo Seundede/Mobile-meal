@@ -3,6 +3,7 @@ import React from "react";
 import tw from "twrnc";
 import { StarIcon } from "react-native-heroicons/solid";
 import { LocationMarkerIcon } from "react-native-heroicons/outline";
+import { urlFor } from "../sanity";
 
 
 export default function RestaurantCard({
@@ -21,7 +22,7 @@ export default function RestaurantCard({
     <TouchableOpacity style={tw`bg-white shadow mr-4`}>
       <Image
         source={{
-          uri: imageUrl,
+          uri: urlFor(imageUrl).url(),
         }}
         style={tw`h-36 w-64 rounded-sm`}
       />

@@ -6,7 +6,7 @@ import {
   ScrollView,
   StyleSheet,
 } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -17,11 +17,30 @@ import {
 } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
-
 import { SafeAreaView } from "react-native-safe-area-context";
+import client from "../sanity";
 
 export default function Home() {
   const navigation = useNavigation();
+  const [featuredCategory, setFeaturedCategory] = useState([]);
+  useEffect(() => {
+    client
+      .fetch(
+        `
+   *[_type == "featured"] {
+     ...,
+     restaurants[]->{
+       ...,
+       dishes[]->
+     }
+   }`
+      )
+      .then((data) => {
+        setFeaturedCategory(data);
+      });
+  }, []);
+
+
   return (
     <SafeAreaView style={tw`bg-white pt-2`}>
       {/**Header */}
@@ -47,7 +66,7 @@ export default function Home() {
         <View style={tw`flex-row bg-gray-200 p-2 mr-2 flex-1 items-center`}>
           <SearchIcon color="gray" size={20} />
           <TextInput
-            placeholder="Search for a restuarant"
+            placeholder="What do you want to eat?"
             keyboardType="default"
           />
         </View>
@@ -59,23 +78,22 @@ export default function Home() {
         style={tw`bg-gray-100`}
         contentContainerStyle={styles.contentContainer}
       >
+        <View style={tw`mx-4 flex-row items-center justify-between pt-3`}>
+          <Text style={tw` text-sm font-bold`}>Category</Text>
+          <Text style={tw` text-sm font-bold text-red-500`}>See All</Text>
+        </View>
+
         <Categories />
         {/**Featured row */}
-        <FeaturedRow
-          title="Featured"
-          description="Paid placements from our partners"
-          id="1"
-        />
-        <FeaturedRow
-          title="Tasty Discounts"
-          description="Everyone's been enjoying these juicy discounts"
-          id="12"
-        />
-        <FeaturedRow
-          title="Offers near you!"
-          description="why not support your local restaurant tonight"
-          id="145"
-        />
+        {featuredCategory?.map((category) => (
+          <FeaturedRow
+            key={category._id}
+            id={category._id}
+           title={category.name}
+           description={category.short_description}
+          />
+        ))}
+        
       </ScrollView>
     </SafeAreaView>
   );
