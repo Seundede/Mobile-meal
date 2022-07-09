@@ -1,7 +1,6 @@
 import {
   View,
   Text,
-  SafeAreaView,
   Image,
   TextInput,
   ScrollView,
@@ -10,16 +9,21 @@ import {
 import React from "react";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
-import { AdjustmentsIcon, ChevronDownIcon, SearchIcon, UserIcon } from "react-native-heroicons/outline";
+import {
+  AdjustmentsIcon,
+  ChevronDownIcon,
+  SearchIcon,
+  UserIcon,
+} from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 
-
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
   const navigation = useNavigation();
   return (
-    <SafeAreaView style={tw`bg-white pt-5`}>
+    <SafeAreaView style={tw`bg-white pt-2`}>
       {/**Header */}
       <View style={tw`flex-row pb-3 mx-4 items-center`}>
         <Image
@@ -40,7 +44,7 @@ export default function Home() {
 
       {/**Search box */}
       <View style={tw`items-center flex-row pb-3 mx-4`}>
-        <View style={tw`flex-row bg-gray-200 p-2 mr-2 flex-1`}>
+        <View style={tw`flex-row bg-gray-200 p-2 mr-2 flex-1 items-center`}>
           <SearchIcon color="gray" size={20} />
           <TextInput
             placeholder="Search for a restuarant"
