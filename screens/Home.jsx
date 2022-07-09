@@ -12,6 +12,7 @@ import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
 import { AdjustmentsIcon, ChevronDownIcon, SearchIcon, UserIcon } from "react-native-heroicons/outline";
 import Categories from "../components/Categories";
+import FeaturedRow from "../components/FeaturedRow";
 
 
 
@@ -55,6 +56,22 @@ export default function Home() {
         contentContainerStyle={styles.contentContainer}
       >
         <Categories />
+        {/**Featured row */}
+        <FeaturedRow
+          title="Featured"
+          description="Paid placements from our partners"
+          id="1"
+        />
+        <FeaturedRow
+          title="Tasty Discounts"
+          description="Everyone's been enjoying these juicy discounts"
+          id="12"
+        />
+        <FeaturedRow
+          title="Offers near you!"
+          description="why not support your local restaurant tonight"
+          id="145"
+        />
       </ScrollView>
     </SafeAreaView>
   );
