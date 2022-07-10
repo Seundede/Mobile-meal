@@ -3,8 +3,7 @@ import React from "react";
 import tw from "twrnc";
 
 export default function CategoryCard({ imageUrl, title }) {
-  console.log(title);
-  console.log(imageUrl);
+
   return (
     <TouchableOpacity style={tw`mr-2 relative`}>
       <Image

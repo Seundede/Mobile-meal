@@ -4,7 +4,7 @@ import tw from "twrnc";
 import { StarIcon } from "react-native-heroicons/solid";
 import { LocationMarkerIcon } from "react-native-heroicons/outline";
 import { urlFor } from "../sanity";
-
+import { useNavigation } from "@react-navigation/native";
 
 export default function RestaurantCard({
   id,
@@ -18,8 +18,25 @@ export default function RestaurantCard({
   longitude,
   latitude,
 }) {
+  const navigation = useNavigation();
   return (
-    <TouchableOpacity style={tw`bg-white shadow mr-4`}>
+    <TouchableOpacity
+      style={tw`bg-white shadow mr-4`}
+      onPress={() => {
+        navigation.navigate("Restaurant", {
+          id,
+          imageUrl,
+          title,
+          rating,
+          genre,
+          address,
+          shortDescription,
+          dishes,
+          longitude,
+          latitude,
+        })        
+      }}
+    >
       <Image
         source={{
           uri: urlFor(imageUrl).url(),
@@ -36,7 +53,10 @@ export default function RestaurantCard({
         </View>
         <View style={tw`flex-row items-center`}>
           <LocationMarkerIcon color="gray" opacity={0.4} size={22} />
-          <Text style={tw`text-xs text-gray-500 ml-1`}> Nearby . {address}</Text>
+          <Text style={tw`text-xs text-gray-500 ml-1`}>
+            {" "}
+            Nearby . {address}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>
