@@ -5,10 +5,11 @@ import RestaurantCard from "./RestaurantCard";
 import client from "../sanity";
 
 export default function FeaturedRow({ title, description, id }) {
-  const [restaurants, setRestaurants] = useState([])
+  const [restaurants, setRestaurants] = useState([]);
   useEffect(() => {
-    client.fetch(
-      `
+    client
+      .fetch(
+        `
    *[_type == "featured" && _id == $id] {
      ...,
      restaurants[]->{
@@ -19,18 +20,16 @@ export default function FeaturedRow({ title, description, id }) {
        }
      }
    }[0]`,
-      { id }
-    ).then(data => {
-      setRestaurants(data?.restaurants)
-    })
+        { id }
+      )
+      .then((data) => {
+        setRestaurants(data?.restaurants);
+      });
   }, [id]);
 
   return (
     <View>
-      <View style={tw`mt-4 flex-row items-center justify-between px-4`}>
-        <Text style={tw`text-lg font-bold`}>{title}</Text>
-        <Text style={tw` text-sm font-bold text-red-500`}>See All</Text>
-      </View>
+      <Text style={tw`text-lg font-bold px-4 mt-4`}>{title}</Text>
       <Text style={tw`text-xs text-gray-500 px-4`}>{description}</Text>
 
       <ScrollView
@@ -41,7 +40,7 @@ export default function FeaturedRow({ title, description, id }) {
       >
         {restaurants.map((item) => (
           <RestaurantCard
-          key={item._id}
+            key={item._id}
             id={item._id}
             imageUrl={item.image}
             title={item.name}
@@ -54,8 +53,6 @@ export default function FeaturedRow({ title, description, id }) {
             latitude={item.latitude}
           />
         ))}
-
-        
       </ScrollView>
     </View>
   );

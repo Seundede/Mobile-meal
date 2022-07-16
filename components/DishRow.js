@@ -4,16 +4,20 @@ import tw from "twrnc";
 import { urlFor } from "../sanity";
 import { MinusCircleIcon, PlusCircleIcon } from "react-native-heroicons/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { addToBasket} from "../slices/basketSlice";
+import { addToBasket, removeFromBasket, selectBasketItemsWithId } from "../slices/basketSlice";
 
-export default function DishRow({ key, id, name, description, price, image }) {
+export default function DishRow({  id, name, description, price, image }) {
   const [isPressed, setIsPressed] = useState(false);
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.basket.items);
+  const count = useSelector((state) => selectBasketItemsWithId(state, id));
   const addFoodToBasket = () => {
-    dispatch(addToBasket({ key, id, name, description, price, image }));
+    dispatch(addToBasket({ id, name, description, price, image }));
   };
-console.log(count)
+  const  removeFoodFromBasket = () => {
+    if(!count.length > 0) return
+    dispatch(removeFromBasket({ id }));
+  };
+
   return (
     <>
       <TouchableOpacity
@@ -37,10 +41,14 @@ console.log(count)
         </View>
       </TouchableOpacity>
       {isPressed && (
-        <View style={tw`bg-white px-4 pt-2`}>
+        <View style={tw`bg-white px-4 pt-2 `}>
           <View style={tw`flex-row items-center pb-3`}>
             <TouchableOpacity>
-              <MinusCircleIcon size={40} color="black" />
+              <MinusCircleIcon
+                size={40}
+                color="black"
+                onPress={removeFoodFromBasket}
+              />
             </TouchableOpacity>
             <Text style={tw`mx-3 text-lg`}>{count.length}</Text>
             <TouchableOpacity onPress={addFoodToBasket}>

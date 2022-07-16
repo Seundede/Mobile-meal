@@ -10,8 +10,6 @@ import React, { useState, useEffect } from "react";
 import tw from "twrnc";
 import { useNavigation } from "@react-navigation/native";
 import {
-  AdjustmentsIcon,
-  ChevronDownIcon,
   SearchIcon,
   UserIcon,
 } from "react-native-heroicons/outline";
@@ -19,10 +17,12 @@ import Categories from "../components/Categories";
 import FeaturedRow from "../components/FeaturedRow";
 import { SafeAreaView } from "react-native-safe-area-context";
 import client from "../sanity";
+import { useDispatch } from "react-redux";
 
 export default function Home() {
-  const navigation = useNavigation();
   const [featuredCategory, setFeaturedCategory] = useState([]);
+    const dispatch = useDispatch();
+    const navigation = useNavigation();
   useEffect(() => {
     client
       .fetch(
@@ -40,7 +40,6 @@ export default function Home() {
       });
   }, []);
 
-
   return (
     <SafeAreaView style={tw`bg-white pt-2`}>
       {/**Header */}
@@ -52,13 +51,14 @@ export default function Home() {
           }}
         />
         <View style={tw`ml-2 flex-1`}>
+          <Text style={tw`font-bold text-lg`}>Welcome</Text>
           <Text style={tw`font-bold text-gray-400 text-xs `}>Deliver Now!</Text>
-          <Text style={tw`font-bold text-lg`}>
-            Current Location
-            <ChevronDownIcon size={20} color="gray" />
-          </Text>
         </View>
-        <UserIcon size={35} color="gray" />
+        <UserIcon
+          size={35}
+          color="gray"
+          onPress={() =>navigation.navigate("BottomTab", { screen: "User" })}
+        />
       </View>
 
       {/**Search box */}
@@ -70,7 +70,7 @@ export default function Home() {
             keyboardType="default"
           />
         </View>
-        <AdjustmentsIcon color="gray" />
+     
       </View>
 
       {/**Main */}
@@ -78,10 +78,7 @@ export default function Home() {
         style={tw`bg-gray-100`}
         contentContainerStyle={styles.contentContainer}
       >
-        <View style={tw`mx-4 flex-row items-center justify-between pt-3`}>
-          <Text style={tw` text-sm font-bold`}>Category</Text>
-          <Text style={tw` text-sm font-bold text-red-500`}>See All</Text>
-        </View>
+        <Text style={tw` text-lg font-bold mx-4 pt-3`}>Category</Text>
 
         <Categories />
         {/**Featured row */}
@@ -89,11 +86,10 @@ export default function Home() {
           <FeaturedRow
             key={category._id}
             id={category._id}
-           title={category.name}
-           description={category.short_description}
+            title={category.name}
+            description={category.short_description}
           />
         ))}
-        
       </ScrollView>
     </SafeAreaView>
   );

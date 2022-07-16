@@ -34,7 +34,7 @@ export default function RestaurantCard({
           dishes,
           longitude,
           latitude,
-        })        
+        });
       }}
     >
       <Image
@@ -46,9 +46,9 @@ export default function RestaurantCard({
       <View style={tw`px-3 pb-4`}>
         <Text style={tw`font-bold text-lg pt-2`}>{title}</Text>
         <View style={tw`flex-row items-center`}>
-          <StarIcon color="green" />
+          <StarIcon color="#008080" />
           <Text style={tw`text-xs text-gray-500 ml-1`}>
-            <Text style={tw`text-green-600`}>{rating}</Text>. {genre}
+            <Text style={tw`text-[#008080]`}>{rating}</Text>. {genre}
           </Text>
         </View>
         <View style={tw`flex-row items-center`}>
