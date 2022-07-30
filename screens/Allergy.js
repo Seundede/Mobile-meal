@@ -6,7 +6,7 @@ import { ArrowLeftIcon } from "react-native-heroicons/solid";
 
 const Allergy = ({ navigation}) => {
   return (
-    <SafeAreaView style={tw`w-full bg-white relative`}>
+    <SafeAreaView style={tw`w-full bg-white relative h-full`}>
       <TouchableOpacity
         style={tw`absolute top-12 left-5 bg-black rounded-full p-2`}
         onPress={() => navigation.goBack()}

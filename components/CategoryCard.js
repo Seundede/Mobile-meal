@@ -10,7 +10,7 @@ export default function CategoryCard({ imageUrl, title }) {
         source={{
           uri: imageUrl,
         }}
-        style={tw`h-35 w-30 rounded-xl`}
+        style={tw`h-25 w-30 rounded-xl`}
       />
       <Text style={tw`absolute top-1 left-1 text-white font-bold`}>
         {title}

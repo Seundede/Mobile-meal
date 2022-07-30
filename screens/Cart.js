@@ -7,8 +7,6 @@ import { useNavigation } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import { urlFor } from "../sanity";
 import { removeFromBasket, totalPrice } from "../slices/basketSlice";
-import CartPayment from "../components/CartPayment";
-
 
 const Cart = () => {
   const totalCheckoutPrice = useSelector(totalPrice);
@@ -16,7 +14,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [categorizedItems, setCategorizedItems] = useState([]);
-  const [isPayment, setIsPayment] = useState(false);
 
   useEffect(() => {
     const data = items.reduce((results, item) => {
@@ -25,29 +22,6 @@ const Cart = () => {
     }, {});
     setCategorizedItems(data);
   }, [items]);
-
-  const onPaymentSuccess = () => {
-    alert("Payment successful");
-     setIsPayment(false);
-  navigation.navigate("BottomTab", { screen: "Home" });
-  };
-
-  const onPaymentCancel = () => {
-    setIsPayment(false);
-    alert("Payment failed due to cancellation by user");
-   navigation.navigate("BottomTab", { screen: "Home" });
-  };
-
-  if (items.length > 0) {
-    if (isPayment) {
-      return (
-        <CartPayment
-          onPaymentSuccess={onPaymentSuccess}
-          onPaymentCancel={onPaymentCancel}
-        />
-      );
-    }
-  }
 
   return (
     <SafeAreaView style={tw`relative h-full w-full`}>
@@ -106,7 +80,7 @@ const Cart = () => {
         <TouchableOpacity style={tw`rounded-lg p-4 bg-[#008080] mt-4`}>
           <Text
             style={tw`text-white text-center font-bold text-lg`}
-            onPress={() => setIsPayment(true)}
+            onPress={() => navigation.navigate("Checkout")}
           >
             Place Order
           </Text>

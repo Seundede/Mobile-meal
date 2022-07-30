@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Restaurant from "./screens/Restaurant";
 import { Provider } from "react-redux";
@@ -15,10 +15,12 @@ import Home from "./screens/Home";
 import { LogBox } from "react-native";
 import Splash from "./screens/Splash";
 import Signin from "./screens/Signin";
+import Checkout from "./components/Checkout";
 
-export default function App({ navigation }) {
+export default function App() {
   const Stack = createNativeStackNavigator();
   const [state, setState] = useState(false);
+
 
   useEffect(() => {
     const subscribe = onAuthStateChanged(auth, (user) => {
@@ -30,28 +32,40 @@ export default function App({ navigation }) {
 
     return subscribe;
   }, []);
+
   LogBox.ignoreLogs(["new NativeEventEmitter"]); // Ignore log notification by message LogBox.ignoreAllLogs(); //Ignore all log notifications
 
   return (
     <Provider store={store}>
       <StripeProvider
         publishableKey="pk_test_51KOIZDFthq0D0sgzx2jY3Fv2tZGbKLHOju78M3moCDgT26TbL64hECrGxj0n0dy7nb8PY7sS53SoP9DRA9UuuAL200gHlJQs5y"
-        merchantIdentifier="com.foodDelivery"
+        merchantIdentifier="merchant.com.foodDelivery"
+     
+        threeDSecureParams={{
+          backgroundColor: '#fff',
+          timeout: 3,
+        }}
       >
         <NavigationContainer>
           <StatusBar style="auto" />
           {state ? (
             <Stack.Navigator screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="BottomTab" component={BottomTab} />
+              <Stack.Screen name="BottomTab">
+                {(props) => <BottomTab {...props} setAppState={setState} />}
+              </Stack.Screen>
               <Stack.Screen name="Restaurant" component={Restaurant} />
               <Stack.Screen name="Allergy" component={Allergy} />
-
               <Stack.Screen
-                name="Cart"
-                component={Cart}
+                name="Checkout"
+                component={Checkout}
                 options={{
                   presentation: "modal",
                 }}
+              />
+              <Stack.Screen
+                name="Cart"
+                component={Cart}
+              
               />
             </Stack.Navigator>
           ) : (

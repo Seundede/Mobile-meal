@@ -14,37 +14,23 @@ import {
 } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigation } from "@react-navigation/native";
-import Home from './Home'
+import Home from "./Home";
 import * as Animatable from "react-native-animatable";
 
-
 export default function Signin() {
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();
-  
-  const signIn = () => {
+
+  const signIn =  () => {
     try {
       signInWithEmailAndPassword(auth, email, password).then(
         (userCredential) => {
           const user = userCredential.user;
         }
       );
-    } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    } finally {
-      return <Home />
-    }
-  };
-
-  const signUp = () => {
-    try {
-      createUserWithEmailAndPassword(auth, email, password).then(
-        (userCredential) => {
-          const user = userCredential.user;
-        }
-      );
+     
     } catch (error) {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -53,7 +39,22 @@ export default function Signin() {
     }
   };
 
-  
+  const signUp = () => {
+    try {
+      createUserWithEmailAndPassword(auth, email, password).then(
+        (userCredential) => {
+          const user = userCredential.user;
+        
+        }
+      );
+     
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    } finally {
+      return <Home />;
+    }
+  };
 
   return (
     <SafeAreaView style={tw`flex-1 items-center justify-center w-full `}>
@@ -70,6 +71,7 @@ export default function Signin() {
         iterationCount="infinite"
         style={tw`h-25 w-25 mb-5`}
       />
+
       <View
         style={tw`w-80 bg-white py-3 mt-3 rounded-lg flex-row items-center`}
       >

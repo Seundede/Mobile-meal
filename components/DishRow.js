@@ -4,17 +4,21 @@ import tw from "twrnc";
 import { urlFor } from "../sanity";
 import { MinusCircleIcon, PlusCircleIcon } from "react-native-heroicons/solid";
 import { useDispatch, useSelector } from "react-redux";
-import { addToBasket, removeFromBasket, selectBasketItemsWithId } from "../slices/basketSlice";
+import {
+  addToBasket,
+  removeFromBasket,
+  selectBasketItemsWithId,
+} from "../slices/basketSlice";
 
-export default function DishRow({  id, name, description, price, image }) {
+export default function DishRow({ id, name, description, price, image }) {
   const [isPressed, setIsPressed] = useState(false);
   const dispatch = useDispatch();
   const count = useSelector((state) => selectBasketItemsWithId(state, id));
   const addFoodToBasket = () => {
     dispatch(addToBasket({ id, name, description, price, image }));
   };
-  const  removeFoodFromBasket = () => {
-    if(!count.length > 0) return
+  const removeFoodFromBasket = () => {
+    if (!count.length > 0) return;
     dispatch(removeFromBasket({ id }));
   };
 

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
+  isComplete: false,
 };
 
 export const basketSlice = createSlice({
@@ -9,26 +10,32 @@ export const basketSlice = createSlice({
   initialState,
   reducers: {
     addToBasket: (state, action) => {
-      state.items = [...state.items, action.payload]
+      state.items = [...state.items, action.payload];
     },
-   removeFromBasket: (state, action) => {
-      const index = state.items.findIndex((item) => item.id == action.payload.id)
-      let newBasket = [...state.items]
-      if(index >= 0) {
-        newBasket.splice(index, 1)
+    removeFromBasket: (state, action) => {
+      const index = state.items.findIndex(
+        (item) => item.id == action.payload.id
+      );
+      let newBasket = [...state.items];
+      if (index >= 0) {
+        newBasket.splice(index, 1);
       } else {
-        console.warn(`Can't remove product not in the basket`)
+        console.warn(`Can't remove product not in the basket`);
       }
-      state.items = newBasket
+      state.items = newBasket;
+    },
+    toggleIsComplete: (state, _) => {
+      state.isComplete = !state.isComplete;
     },
   },
 });
-
 
 export const { addToBasket, removeFromBasket } = basketSlice.actions;
 
 export default basketSlice.reducer;
 
- export const selectBasketItemsWithId = (state,id) => state.basket.items.filter((item) => item.id == id)
+export const selectBasketItemsWithId = (state, id) =>
+  state.basket.items.filter((item) => item.id == id);
 
- export const totalPrice = (state) => state.basket.items.reduce((total, item) => total += item.price, 0)
+export const totalPrice = (state) =>
+  state.basket.items.reduce((total, item) => (total += item.price), 0);
