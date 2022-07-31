@@ -16,10 +16,12 @@ import { LogBox } from "react-native";
 import Splash from "./screens/Splash";
 import Signin from "./screens/Signin";
 import Checkout from "./components/Checkout";
+import { toggleIsComplete } from "./slices/basketSlice";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   const [state, setState] = useState(false);
+
 
 
   useEffect(() => {
@@ -38,13 +40,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <StripeProvider
-        publishableKey="pk_test_51KOIZDFthq0D0sgzx2jY3Fv2tZGbKLHOju78M3moCDgT26TbL64hECrGxj0n0dy7nb8PY7sS53SoP9DRA9UuuAL200gHlJQs5y"
+        publishableKey={process.env.STRIPE_PUBLISHABLE_KEY}
         merchantIdentifier="merchant.com.foodDelivery"
-     
-        threeDSecureParams={{
-          backgroundColor: '#fff',
-          timeout: 3,
-        }}
       >
         <NavigationContainer>
           <StatusBar style="auto" />
@@ -62,11 +59,7 @@ export default function App() {
                   presentation: "modal",
                 }}
               />
-              <Stack.Screen
-                name="Cart"
-                component={Cart}
-              
-              />
+              <Stack.Screen name="Cart" component={Cart} />
             </Stack.Navigator>
           ) : (
             <Stack.Navigator screenOptions={{ headerShown: false }}>

@@ -18,7 +18,6 @@ import Home from "./Home";
 import * as Animatable from "react-native-animatable";
 
 export default function Signin() {
-  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigation = useNavigation();

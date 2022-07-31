@@ -23,7 +23,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  
+
   useEffect(() => {
     client
       .fetch(
@@ -40,6 +40,7 @@ export default function Home() {
         setFeaturedCategory(data);
       });
   }, []);
+
   onAuthStateChanged(auth, (user) => {
     if (user) {
       const uid = user.uid;
@@ -69,7 +70,9 @@ export default function Home() {
 
       {/**Search box */}
       <View style={tw`items-center flex-row pb-3 mx-4`}>
-        <View style={tw`flex-row bg-gray-200 p-2 mr-2 flex-1 items-center rounded-lg`}>
+        <View
+          style={tw`flex-row bg-gray-200 p-2 mr-2 flex-1 items-center rounded-lg`}
+        >
           <SearchIcon color="gray" size={20} />
           <TextInput
             placeholder="What do you want to eat?"
@@ -84,7 +87,7 @@ export default function Home() {
         contentContainerStyle={styles.contentContainer}
       >
         <Text style={tw` text-lg font-bold mx-4 pt-3`}>Category</Text>
-
+        {/**Categories */}
         <Categories />
         {/**Featured row */}
         {featuredCategory?.map((category) => (

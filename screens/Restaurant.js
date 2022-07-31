@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setRestaurant } from "../slices/restaurantSlice";
 
 const Restaurant = ({ navigation }) => {
+
   const {
     params: {
       id,
@@ -32,6 +33,7 @@ const Restaurant = ({ navigation }) => {
   } = useRoute();
   const dispatch = useDispatch();
   const items = useSelector((state) => state.basket.items);
+  
   useEffect(() => {
     dispatch(
       setRestaurant({

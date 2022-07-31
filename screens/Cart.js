@@ -9,6 +9,7 @@ import { urlFor } from "../sanity";
 import { removeFromBasket, totalPrice } from "../slices/basketSlice";
 
 const Cart = () => {
+
   const totalCheckoutPrice = useSelector(totalPrice);
   const items = useSelector((state) => state.basket.items);
   const dispatch = useDispatch();
@@ -81,6 +82,7 @@ const Cart = () => {
           <Text
             style={tw`text-white text-center font-bold text-lg`}
             onPress={() => navigation.navigate("Checkout")}
+            disabled={totalCheckoutPrice == 0}
           >
             Place Order
           </Text>

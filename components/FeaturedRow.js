@@ -5,7 +5,9 @@ import RestaurantCard from "./RestaurantCard";
 import client from "../sanity";
 
 export default function FeaturedRow({ title, description, id }) {
+
   const [restaurants, setRestaurants] = useState([]);
+  
   useEffect(() => {
     client
       .fetch(

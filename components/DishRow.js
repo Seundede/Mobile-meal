@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import tw from "twrnc";
 import { urlFor } from "../sanity";
@@ -11,6 +11,7 @@ import {
 } from "../slices/basketSlice";
 
 export default function DishRow({ id, name, description, price, image }) {
+  
   const [isPressed, setIsPressed] = useState(false);
   const dispatch = useDispatch();
   const count = useSelector((state) => selectBasketItemsWithId(state, id));

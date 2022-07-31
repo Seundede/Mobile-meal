@@ -2,13 +2,12 @@ import { View, Text, TouchableOpacity, TextInput, Alert } from "react-native";
 import React, { useState } from "react";
 import tw from "twrnc";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { CardField, useConfirmPayment } from "@stripe/stripe-react-native";
-import axios from "axios";
+import { CardField } from "@stripe/stripe-react-native";
+import { useDispatch } from "react-redux";
 
 const Checkout = ({ navigation }) => {
   const [name, setName] = useState("");
-  const { confirmPayment, loading } = useConfirmPayment();
-
+  const dispatch = useDispatch();
 
   const handleCancelPayment = () => {
     Alert.alert("Alert", "Payment cancelled by user", [
@@ -21,34 +20,15 @@ const Checkout = ({ navigation }) => {
     ]);
   };
 
-
-  
-  const initPayment = async () => {
-    const response = await axios.post(
-      "http://localhost:4000/create-payment-intent",
+  const initPayment = () => {
+    Alert.alert("Alert", "Payment made", [
       {
-        currency: "inr",
-        paymentMethod: "card",
-      }
-    );
-    if (response.data) {
-      const clientSecret = response.data.clientSecret;
-      const billingDetails = {
-        name,
-      };
-      const { error, paymentIntent } = await confirmPayment(clientSecret, {
-        type: "Card",
-        billingDetails,
-      });
-       Alert.alert("Alert", "Payment made", [
-     
-      { text: "OK", onPress: () => navigation.navigate("Home") },
+        text: "OK",
+        onPress: () => {
+          navigation.navigate("Home");
+        },
+      },
     ]);
-  }
-     
-     else {
-    console.log('error')
-    }
   };
   return (
     <SafeAreaView style={tw`w-full h-full flex-1 items-center justify-center`}>
@@ -86,8 +66,12 @@ const Checkout = ({ navigation }) => {
       <TouchableOpacity
         style={tw`w-80 mt-4 bg-[#008080] rounded-lg`}
         onPress={initPayment}
+        disabled={name ==''}
       >
-        <Text style={tw`text-center py-4 text-white`}>Pay</Text>
+        <Text style={tw`text-white text-center py-4`} 
+        >
+          Pay
+        </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={tw`w-80 mt-4 bg-white rounded-lg border-2 border-[#008080]`}
