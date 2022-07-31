@@ -1,6 +1,6 @@
 ## Mobile Menu
 
-An online food delivery application that brings delicious food from your favourite local restaurant right to your door. Credit card payment implemented with Stripe.
+A React native food delivery application that brings delicious food from your favourite local restaurant right to your door. Credit card payment implemented with Stripe.
 
 ## Technology stack
 
