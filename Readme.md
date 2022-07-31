@@ -1,6 +1,6 @@
 ## Mobile Menu
 
-Zinger is an android app to order food within a campus, tech park or mall with many outlets to avoid long waiting time or get it delivered anywhere within a specific place
+An online food delivery application that brings delicious food from your favourite local restaurant right to your door. Credit card payment implemented with Stripe.
 
 ## Technology stack
 
@@ -44,12 +44,23 @@ Zinger is an android app to order food within a campus, tech park or mall with m
   messagingSenderId: "",
   appId: "",
 ```
-4. Create a .env file and input your Stripe secret and publishing key
+4. Create a .env file and input the Stripe secret and publishing key
 ```bash
   STRIPE_SECRET_KEY=sk_test_
   STRIPE_PUBLISHABLE_KEY=pk_test_
 ```
-
+5. Run the React native application
+```bash
+  expo start 
+```
+6. Run the application on an iOS simulator
+```bash
+  npm run ios
+```
+7. Run the application on an android simulator
+```bash
+  npm run android
+```
 
 
 
