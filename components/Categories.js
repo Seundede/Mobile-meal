@@ -18,7 +18,6 @@ export default function Categories() {
       setCategory(data);
     });
   }, []);
-
   return (
     <ScrollView
       horizontal
@@ -26,13 +25,14 @@ export default function Categories() {
       contentContainerStyle={styles.contentContainer}
     >
       {category.map((item) => (
-        <TouchableOpacity style={tw`mr-2 relative`}>
+        <TouchableOpacity style={tw`mr-2 relative`} key={item.name}>
           <Image
             source={{
               uri: urlFor(item.image).url(),
             }}
             style={tw`h-25 w-30 rounded-xl`}
           />
+          <Text style={tw`text-white absolute left-1 top-1`}>{item.name}</Text>
         </TouchableOpacity>
       ))}
     </ScrollView>

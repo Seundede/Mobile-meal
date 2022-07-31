@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   items: [],
-  isComplete: false,
 };
 
 export const basketSlice = createSlice({
@@ -24,11 +23,6 @@ export const basketSlice = createSlice({
       }
       state.items = newBasket;
     },
-
-    toggleIsComplete: (state, _) => {
-      state.isComplete = !state.isComplete;
-    },
-  
   },
 });
 
