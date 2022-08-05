@@ -2,7 +2,7 @@
 
 A React native food delivery application that brings delicious food from your favourite local restaurant right to your door with credit card payment implemented with Stripe.
 
-![Video](./assets/video_readme.mp4)
+![Screenshot](./assets/Image_readme.png)
 
 ## Technology stack
 
