@@ -1,6 +1,8 @@
 ## Mobile Menu
 
-A React native food delivery application that brings delicious food from your favourite local restaurant right to your door. Credit card payment implemented with Stripe.
+A React native food delivery application that brings delicious food from your favourite local restaurant right to your door with credit card payment implemented with Stripe.
+
+![Video](./assets/video_readme.mp4)
 
 ## Technology stack
 
@@ -8,12 +10,18 @@ A React native food delivery application that brings delicious food from your fa
 - Expo
 - Redux
 - Sanity
-- React Navigation
-- Stripe
+- JavaScript
 - Firebase
 - Tailwind
+
+
+## Dependency 
+
+- React navigation
+- Stripe
 - React native animatable
 - React native heroicons
+- React native safe area context
 
 ## Getting started
 
