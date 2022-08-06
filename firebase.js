@@ -3,12 +3,12 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCYMLywk5j84uQpo_mm0yPkaMnUSdVITxI",
-  authDomain: "react-native-food-dd7d8.firebaseapp.com",
-  projectId: "react-native-food-dd7d8",
-  storageBucket: "react-native-food-dd7d8.appspot.com",
-  messagingSenderId: "238286898836",
-  appId: "1:238286898836:web:fa1b32cbd6ef47a9c71681",
+  apiKey: "",
+  authDomain: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: "",
+  appId: "",
 };
 
 // Initialize Firebase
