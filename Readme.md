@@ -46,7 +46,7 @@ https://user-images.githubusercontent.com/63148200/183225406-108630e3-48b1-4fbc-
 ```bash
   npm install
 ```
-3. Create a firebase.js file and fill the required information
+3. Create a new Firebase project  and fill the required information in firebase.js file
 ```bash
   apiKey: "",
   authDomain: "",
