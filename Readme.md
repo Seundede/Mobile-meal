@@ -3,7 +3,11 @@
 A React native food delivery application brings delicious food from your favorite local restaurant to your door. Credit card payment implemented with Stripe.
 
 
-https://user-images.githubusercontent.com/63148200/183225406-108630e3-48b1-4fbc-a2ca-636d2a46de04.mp4
+
+
+https://user-images.githubusercontent.com/63148200/183539243-01025b73-e776-447d-8ca2-4a763a06439a.mp4
+
+
 
 
 
@@ -72,7 +76,7 @@ https://user-images.githubusercontent.com/63148200/183225406-108630e3-48b1-4fbc-
 ```bash
   npm run android
 ```
+![image_readme](https://user-images.githubusercontent.com/63148200/183539267-4bcfc9bd-0a07-46ed-b48a-0978a6e619e9.png)
 
-![image_readme](https://user-images.githubusercontent.com/63148200/183225419-f82908dc-081f-4a85-bf5c-d03b54bd85ce.png)
 
 
