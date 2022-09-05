@@ -22,7 +22,7 @@ https://user-images.githubusercontent.com/63148200/183539243-01025b73-e776-447d-
 - Tailwind
 
 
-## Dependency 
+## Dependencies
 
 - React navigation
 - Stripe
